@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Measure {
     @Id
-    private Long MeasureID; // measure ID
+    private String measureID; // measure ID
 
     private LocalDateTime timestamp;  // local time at the measure POST request
 
@@ -21,10 +21,17 @@ public class Measure {
 
     private Battery battery;    // battery state during the measure
 
+    public Measure(LocalDateTime now, String s, Meteo meteo, Battery battery) {
+        this.timestamp = now;
+        this.thingID = s;
+        this.meteo = meteo;
+        this.battery = battery;
+    }
+
     @Override
     public String toString() {
         return "Measure{" +
-                "MeasureID='" + MeasureID + '\'' +
+                "MeasureID='" + measureID + '\'' +
                 ", timestamp=" + timestamp +
                 ", thingID='" + thingID + '\'' +
                 ", meteo=" + meteo +
