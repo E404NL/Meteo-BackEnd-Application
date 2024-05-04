@@ -1,4 +1,5 @@
 package meteo.data.meteodataapp.models;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Measure {
     @Id
-    private String measureID; // measure ID
+    private String id; // measure ID
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timestamp;  // local time at the measure POST request
 
     private String thingID;     // embedded system ID what's post the request
@@ -31,7 +33,7 @@ public class Measure {
     @Override
     public String toString() {
         return "Measure{" +
-                "MeasureID='" + measureID + '\'' +
+                "MeasureID='" + id + '\'' +
                 ", timestamp=" + timestamp +
                 ", thingID='" + thingID + '\'' +
                 ", meteo=" + meteo +
