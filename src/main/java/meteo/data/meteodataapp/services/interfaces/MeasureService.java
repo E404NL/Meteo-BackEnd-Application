@@ -10,6 +10,4 @@ public interface MeasureService {
     public Measure findMeasureById(String id);
     public Measure saveMeasure(Measure measure);
     public void deleteMeasureByMeasureId(String id);
-
-
 }

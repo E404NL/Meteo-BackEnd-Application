@@ -12,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 @SpringBootApplication
 @AllArgsConstructor
@@ -22,20 +23,26 @@ public class MeteoDataAppApplication implements CommandLineRunner {
 
     @Autowired
     private MeasureServiceImpl measureServiceImpl;
+
     public static void main(String[] args) {
         SpringApplication.run(MeteoDataAppApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        measureRepository.deleteAll();
+        //measureRepository.deleteAll();
+        Random random = new Random();
 
-        measureServiceImpl.saveMeasure(new Measure(
+        // For create randoms fake datas on DB between every restart for testing later
+        /*measureServiceImpl.saveMeasure(new Measure(
                 LocalDateTime.now(),
                 "ESP8266-1",
-                new Meteo(23.59f, 10.78f, 115000l),
-                new Battery(45, 5.4f)
-        ));
+                new Meteo(random.nextFloat(-20f,50f),
+                        random.nextFloat(0f,90f),
+                        random.nextLong(105000l,110000l)),
+                new Battery(random.nextInt(0,100),
+                        random.nextFloat(1.0f,3.7f))
+        ));*/
 
         System.out.println("Measures found with findMeasuresByMeasureID():");
         System.out.println("---------------------------------------------");

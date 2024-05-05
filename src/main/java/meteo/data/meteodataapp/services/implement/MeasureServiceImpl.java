@@ -34,7 +34,21 @@ public class MeasureServiceImpl implements MeasureService {
         measureRepository.deleteById(id);
     }
 
+    public void deleteAllMeasures(){ measureRepository.deleteAll(); }
+
     public Collection<Measure> findMeasuresByTimes(LocalDateTime startTime, LocalDateTime endTime){
         return measureRepository.findMeasuresByTimestampBetween(startTime, endTime);
     }
+
+    public Collection<Measure> findMeasuresByThingIdAndByTimes(String thingId,
+                                                               LocalDateTime startTime,
+                                                               LocalDateTime endTime){
+        return measureRepository.findMeasuresByThingIDAndTimestampBetween(thingId, startTime, endTime);
+    }
+
+    public long countAllMeasuresInDatabase(){
+        return measureRepository.countBy();
+    }
+
+
 }
